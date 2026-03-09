@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== FONT FACES ===== */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque[opsz,wdth,wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/assets/fonts/Outfit[wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* ===== TRU VACATE CLEANING PERTH — TEAL + CLEAN WHITE PALETTE ===== */
+    /* Primary: Deep teal — professional, trustworthy */
+    --primary: 0.52 0.13 195;
+    --primary-foreground: 0.99 0 0;
+
+    /* Secondary: Light teal wash */
+    --secondary: 0.95 0.03 195;
+    --secondary-foreground: 0.25 0.08 195;
+
+    /* Accent: Bright green for CTAs */
+    --accent: 0.53 0.17 150;
+    --accent-foreground: 0.99 0 0;
+
+    /* Background: Pure white */
+    --background: 1 0 0;
+    --foreground: 0.18 0.02 240;
+
+    /* Card: Very light cool grey */
+    --card: 0.98 0.005 220;
+    --card-foreground: 0.18 0.02 240;
+
+    /* Popover */
+    --popover: 1 0 0;
+    --popover-foreground: 0.18 0.02 240;
+
+    /* Muted: Light grey for sections */
+    --muted: 0.95 0.01 220;
+    --muted-foreground: 0.5 0.02 220;
+
+    /* Destructive */
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.99 0 0;
+
+    /* Border: Subtle cool border */
+    --border: 0.9 0.01 220;
+    --input: 0.93 0.01 220;
+    --ring: 0.52 0.13 195;
+
+    /* Chart colors */
+    --chart-1: 0.52 0.13 195;
+    --chart-2: 0.53 0.17 150;
+    --chart-3: 0.7 0.15 195;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+
+    /* Sidebar */
+    --sidebar: 0.98 0.005 220;
+    --sidebar-foreground: 0.18 0.02 240;
+    --sidebar-primary: 0.52 0.13 195;
+    --sidebar-primary-foreground: 0.99 0 0;
+    --sidebar-accent: 0.95 0.03 195;
+    --sidebar-accent-foreground: 0.25 0.08 195;
+    --sidebar-border: 0.9 0.01 220;
+    --sidebar-ring: 0.52 0.13 195;
+
+    /* Custom brand tokens */
+    --brand-teal: 0.52 0.13 195;
+    --brand-teal-dark: 0.42 0.13 195;
+    --brand-teal-light: 0.85 0.07 195;
+    --brand-green: 0.53 0.17 150;
+    --brand-green-dark: 0.43 0.17 150;
+    --brand-whatsapp: 0.55 0.19 145;
+    --brand-section-bg: 0.97 0.01 200;
+  }
+
+  .dark {
+    --background: 0.13 0.02 240;
+    --foreground: 0.97 0 0;
+    --card: 0.18 0.02 240;
+    --card-foreground: 0.97 0 0;
+    --popover: 0.22 0.02 240;
+    --popover-foreground: 0.97 0 0;
+    --primary: 0.65 0.13 195;
+    --primary-foreground: 0.13 0.02 240;
+    --secondary: 0.22 0.03 220;
+    --secondary-foreground: 0.85 0.05 195;
+    --muted: 0.22 0.02 240;
+    --muted-foreground: 0.65 0.03 220;
+    --accent: 0.55 0.17 150;
+    --accent-foreground: 0.97 0 0;
+    --destructive: 0.704 0.191 22.216;
+    --destructive-foreground: 0.97 0 0;
+    --border: 1 0 0 / 10%;
+    --input: 1 0 0 / 15%;
+    --ring: 0.65 0.13 195;
+    --chart-1: 0.65 0.13 195;
+    --chart-2: 0.6 0.17 150;
+    --chart-3: 0.769 0.188 70.08;
+    --chart-4: 0.627 0.265 303.9;
+    --chart-5: 0.645 0.246 16.439;
+    --sidebar: 0.18 0.02 240;
+    --sidebar-foreground: 0.97 0 0;
+    --sidebar-primary: 0.65 0.13 195;
+    --sidebar-primary-foreground: 0.97 0 0;
+    --sidebar-accent: 0.22 0.03 220;
+    --sidebar-accent-foreground: 0.85 0.05 195;
+    --sidebar-border: 1 0 0 / 10%;
+    --sidebar-ring: 0.65 0.13 195;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Outfit", system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 700;
+  }
+}
+
+/* ===== CUSTOM UTILITIES ===== */
+@layer utilities {
+  .brand-teal {
+    color: oklch(var(--brand-teal));
+  }
+
+  .bg-brand-teal {
+    background-color: oklch(var(--brand-teal));
+  }
+
+  .bg-brand-teal-dark {
+    background-color: oklch(var(--brand-teal-dark));
+  }
+
+  .bg-brand-green {
+    background-color: oklch(var(--brand-green));
+  }
+
+  .bg-whatsapp {
+    background-color: oklch(var(--brand-whatsapp));
+  }
+
+  .text-brand-teal {
+    color: oklch(var(--brand-teal));
+  }
+
+  .text-brand-green {
+    color: oklch(var(--brand-green));
+  }
+
+  .bg-section {
+    background-color: oklch(var(--brand-section-bg));
+  }
+
+  .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(0.22 0.1 200 / 0.85) 0%,
+      oklch(0.35 0.12 185 / 0.7) 50%,
+      oklch(0.18 0.08 210 / 0.9) 100%
+    );
+  }
+}
