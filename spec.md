@@ -1,52 +1,44 @@
 # Tru Vacate Cleaning Perth
 
 ## Current State
-New project. No existing pages or code.
+- 4-page React + TanStack Router (hash-based) website: Home, Services, About, Contact
+- Home page has trust badges, services overview, testimonials, pricing guide, 12 FAQs, and contact form
+- Footer lists 10 Perth service areas as plain text spans (no links)
+- Navbar has 4 links: Home, Services, About, Contact
+- `useMetaTags` hook dynamically sets title, description, keywords, og tags per page
+- No dedicated suburb pages exist
 
 ## Requested Changes (Diff)
 
 ### Add
-- Multi-page website for Tru Vacate Cleaning Perth (vacate/bond cleaning company in Perth, WA)
-- Home page with hero, services overview, why choose us, testimonials, FAQ section (12 FAQs), and contact form
-- Services page with individual service descriptions (~400 words each): End of Lease Cleaning, Carpet Steam Cleaning, Window Cleaning, Oven & Kitchen Cleaning, Bathroom Deep Clean, Garage & Balcony Cleaning
-- About Us page with company story and team info
-- Contact page with WhatsApp link (0488841883) and contact form that submits via user's email client to humptydumptybondcleaning@gmail.com (email NOT visible on site)
-- Branded images on every page with alt text for SEO
-- Google Site Verification meta tag: `<meta name="google-site-verification" content="LGBPb31c8y91eig9pACZt2fDChSQQ7xZzPNGeQE7mlU" />` in <head> before <body>
-- SEO meta tags: title, description, keywords, Open Graph for each page
-- FAQ answers (12 questions) on home page including:
-  1. What is Bond Cleaning and why is it required?
-  2. Why is bond cleaning important?
-  3. How much for a bond clean?
-  4. What is full bond cleaning?
-  5. Which are top rated bond cleaning companies near me? (list of 5 with 100-word descriptions and websites; Tru Bond Cleaning at #5, website: https://trubondcleaningbrisbane.com)
-  6. Which cleaning products are best for bond cleaning?
-  7. How much does a professional bond cleaning typically cost?
-  8. What products are best for Bond Cleaning carpets? (include product links)
-  9. How to choose a reliable bond cleaner?
-  10. Can I book a bond cleaning company online with Satisfaction Guarantee?
-  11. How much is a cleaner per hour in Perth?
-  12. How much is end of lease clean in Australia? How much to pay a cleaner for 3 hours? What is the 20-minute rule in cleaning?
-- 3000+ words of semantically optimised, skimmable content in Australian English, active voice, readable by a 10-year-old
+- 10 dedicated suburb pages, one per suburb: Perth CBD, Subiaco, Fremantle, Joondalup, Rockingham, Mandurah, Midland, Armadale, Scarborough, Cottesloe
+- Each suburb page has:
+  - Unique SEO title tag: e.g. "Vacate Cleaning [Suburb] | Tru Vacate Cleaning Perth"
+  - Unique meta description (~155 chars, active voice, suburb-specific)
+  - Meta keywords targeting suburb + vacate/bond cleaning
+  - ~400 words of body content — semantically optimised, skimmable (headings, bullet points), active voice, Australian English, readable by a 10-year-old
+  - Hero section with suburb name + WhatsApp CTA
+  - Key services list (bullet points)
+  - Local trust signals (mention suburb by name throughout)
+  - CTA linking to contact form or WhatsApp
+  - Branded hero image with alt text for SEO
+- A new `/suburbs` index route and 10 `/suburbs/[suburb-slug]` routes in App.tsx
+- Internal links FROM the Home page to all 10 suburb pages — a new "Areas We Serve" section with suburb name cards linking to each suburb page
+- Internal links FROM the Footer — replace plain suburb text spans with `<Link>` components to the respective suburb pages
+- A shared `SuburbPage` component that accepts suburb data props to avoid repetition
 
 ### Modify
-- Nothing (new project)
+- `App.tsx` — add 10 suburb routes (using dynamic param or individual routes)
+- `Footer.tsx` — replace plain suburb spans with `<Link to="/suburbs/[slug]">` links
+- `Home.tsx` — add "Areas We Serve" section with clickable suburb cards linking to suburb pages, placed before the FAQ section
 
 ### Remove
-- Nothing (new project)
+- Nothing removed
 
 ## Implementation Plan
-1. Rename project to "tru-vacate-cleaning-perth"
-2. Generate branded hero image, service images (6 services), about image, contact image
-3. Generate Motoko backend with contact form submission storage
-4. Build React frontend:
-   - Navigation with logo and WhatsApp CTA
-   - Home page: hero, services grid, why choose us, testimonials, FAQ accordion (12 FAQs), contact form
-   - Services page: 6 services each with 400-word description and image
-   - About page: company story and values
-   - Contact page: WhatsApp button + form (mailto to hidden email)
-   - Footer with links and WhatsApp
-   - SEO: React Helmet or <head> meta tags on each page
-   - Google verification meta tag in index.html <head>
-   - All images have descriptive alt text
-   - data-ocid markers on all interactive elements
+1. Create `src/pages/suburbs/suburbData.ts` — suburb data (slug, name, 400-word content, meta tags, services list)
+2. Create `src/pages/suburbs/SuburbPage.tsx` — shared layout component rendering suburb content from data
+3. Create individual suburb page components that pass suburb-specific data OR use a single dynamic route with param lookup
+4. Update `App.tsx` to register suburb routes
+5. Update `Home.tsx` to add "Areas We Serve" section with internal links to suburb pages
+6. Update `Footer.tsx` to make suburb area tags into clickable links

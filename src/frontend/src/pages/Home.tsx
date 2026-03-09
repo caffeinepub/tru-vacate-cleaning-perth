@@ -17,6 +17,7 @@ import {
   Home as HomeIcon,
   Leaf,
   Lock,
+  MapPin,
   RefreshCw,
   Shield,
   ShowerHead,
@@ -28,6 +29,7 @@ import { motion } from "motion/react";
 import { SiWhatsapp } from "react-icons/si";
 import { ContactForm } from "../components/ContactForm";
 import { useMetaTags } from "../hooks/useMetaTags";
+import { suburbs } from "./suburbs/suburbData";
 
 const trustBadges = [
   { icon: Shield, text: "100% Bond Back Guarantee" },
@@ -529,9 +531,76 @@ export function Home() {
         </div>
       </section>
 
-      {/* ===== FAQs ===== */}
+      {/* ===== AREAS WE SERVE ===== */}
       <section
         className="py-20 bg-background"
+        aria-labelledby="suburbs-heading"
+        id="areas-we-serve"
+      >
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-14">
+            <h2
+              id="suburbs-heading"
+              className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4"
+            >
+              We Cover All Perth Suburbs
+            </h2>
+            <p className="text-muted-foreground font-body text-lg max-w-2xl mx-auto">
+              Click your suburb to learn more about our vacate cleaning service
+              near you.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            {suburbs.map((suburb, index) => (
+              <motion.div
+                key={suburb.slug}
+                data-ocid={`suburbs.item.${index + 1}`}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: index * 0.05 }}
+              >
+                <Link
+                  to={`/suburbs/${suburb.slug}` as "/suburbs/perth-cbd"}
+                  data-ocid={`suburbs.link.${index + 1}`}
+                  className="group flex flex-col items-center gap-3 p-5 rounded-xl border border-border bg-card hover:border-primary/40 hover:shadow-brand hover:bg-secondary/40 transition-all duration-300 text-center cursor-pointer h-full"
+                >
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                    <MapPin className="h-5 w-5 text-primary" />
+                  </div>
+                  <span className="font-display font-semibold text-sm text-foreground group-hover:text-primary transition-colors leading-snug">
+                    {suburb.name}
+                  </span>
+                  <span className="text-xs text-muted-foreground font-body group-hover:text-primary/70 transition-colors flex items-center gap-1">
+                    Learn More
+                    <ChevronRight className="h-3 w-3" />
+                  </span>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="text-center mt-10">
+            <p className="text-muted-foreground font-body text-sm">
+              Don't see your suburb?{" "}
+              <a
+                href="https://wa.me/61488841883"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline font-medium"
+              >
+                Message us on WhatsApp
+              </a>{" "}
+              — we service all of Perth and surrounds.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FAQs ===== */}
+      <section
+        className="py-20 bg-section"
         aria-labelledby="faq-heading"
         id="faq"
       >

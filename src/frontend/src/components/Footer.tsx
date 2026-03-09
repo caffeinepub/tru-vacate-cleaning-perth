@@ -10,16 +10,16 @@ const navLinks = [
 ];
 
 const serviceAreas = [
-  "Perth CBD",
-  "Subiaco",
-  "Fremantle",
-  "Joondalup",
-  "Rockingham",
-  "Mandurah",
-  "Midland",
-  "Armadale",
-  "Scarborough",
-  "Cottesloe",
+  { name: "Perth CBD", slug: "perth-cbd" },
+  { name: "Subiaco", slug: "subiaco" },
+  { name: "Fremantle", slug: "fremantle" },
+  { name: "Joondalup", slug: "joondalup" },
+  { name: "Rockingham", slug: "rockingham" },
+  { name: "Mandurah", slug: "mandurah" },
+  { name: "Midland", slug: "midland" },
+  { name: "Armadale", slug: "armadale" },
+  { name: "Scarborough", slug: "scarborough" },
+  { name: "Cottesloe", slug: "cottesloe" },
 ];
 
 export function Footer() {
@@ -141,12 +141,13 @@ export function Footer() {
             </h3>
             <div className="flex flex-wrap gap-2">
               {serviceAreas.map((area) => (
-                <span
-                  key={area}
-                  className="inline-block px-2.5 py-1 rounded-md text-xs font-body text-white/70 bg-white/10 border border-white/10"
+                <Link
+                  key={area.slug}
+                  to={`/suburbs/${area.slug}` as "/suburbs/perth-cbd"}
+                  className="inline-block px-2.5 py-1 rounded-md text-xs font-body text-white/70 bg-white/10 border border-white/10 hover:text-white hover:bg-white/20 transition-colors"
                 >
-                  {area}
-                </span>
+                  {area.name}
+                </Link>
               ))}
             </div>
           </div>
